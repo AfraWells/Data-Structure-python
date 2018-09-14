@@ -1,0 +1,66 @@
+x1=[random.random() for i in range(365)]
+x2=[random.random() for i in range(365)]
+def a():
+    for i in range(1,365):
+        if x1[i]<0.35:
+            if x2[i]<0.03 :
+                news=40
+            elif x2[i]<0.08:
+                news=50
+            elif x2[i]<0.23:
+                news=60
+            elif x2[i]<0.43:
+                news=70
+            elif x2[i]<0.78:
+                news=80
+            elif x2[i]<0.93:
+                news=90
+            else :
+                news=100
+        elif x1[i]<0.8:
+            if x2[i]<0.10:
+                news=40
+            elif x2[i]<0.28:
+                news=50
+            elif x2[i]<0.68:
+                news=60
+            elif x2[i]<0.88:
+                news=70
+            elif x2[i]<0.96:
+                news=80
+            else :
+                news=90
+    
+        else:
+            if x2[i]<0.44:
+                news=40
+            elif x2[i]<0.66:
+                news=50
+            elif x2[i]<0.82:
+                news=60
+            elif x2[i]<0.94:
+                news=70
+            else :
+                news=80
+    return news
+ 
+ 
+def sb(n,news):
+    paper = 10*n
+    if paper>=news:    #news为需求量
+        sale=news
+        remand=paper-news  #remand为需要退回的报纸        
+    else:
+        sale=paper
+        remand=0
+    sb = 2*sale-1.3*paper+0.2*remand#sb代表利润
+    return sb
+
+news=a()
+optmoney=sb(4,news)
+for i in range(5,11):
+    if sb(i,news)>optmoney:
+       optnews=i*10
+       optmoney=sb(i,news)
+    print(i,sb(i,news)/364)
+    print(optnews,optmoney,optmoney/364)
